@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(page_title="Assistente de Atendimento Farmacêutico", page_icon="💊", layout="wide")
 
 # Título Principal e Autoria
-st.title("💊 IA de Atendimento Farmacêutico")
+st.title("💊 Assistente de Atendimento Farmacêutico")
 st.markdown(f"### Desenvolvido por: **Lourenza Sampaio**")
 st.markdown("---")
 
