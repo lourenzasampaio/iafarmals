@@ -143,4 +143,4 @@ elif "4. Digestivo" in categoria:
             st.write("👉 **ORIENTAÇÃO:** Encaminhar ao Pronto Socorro imediatamente.")
         else:
             st.success("👉 **INDICAR:** Floratil (Saccharomyces boulardii) ou Enterogermina.")
-            st.write("👉 **ESSENCIAL:** S
+            st.write("👉 **ESSENCIAL:** S")
