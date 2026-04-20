@@ -1,87 +1,146 @@
 import streamlit as st
 
-# Configuração visual da página
-st.set_page_config(page_title="IA Farmacêutica - Lourenza", page_icon="💊", layout="wide")
+# Configuração da Página
+st.set_page_config(page_title="Assistente de Atendimento Farmacêutico", page_icon="💊", layout="wide")
 
-st.title("💊 Assistente de Atendimento no Balcão")
-st.write("### Olá, Lourenza! Sistema de Apoio à Decisão Farmacêutica.")
+# Título Principal e Autoria
+st.title("💊 IA de Atendimento Farmacêutico")
+st.markdown(f"### Desenvolvido por: **Lourenza Sampaio**")
 st.markdown("---")
 
-# Menu Lateral Organizado
+# Menu Principal de Categorias (Lateral)
+st.sidebar.header("Menu de Navegação")
 categoria = st.sidebar.selectbox(
-    "Escolha a Categoria de Medicamento:",
-    ["Início", "1. Tosse", "2. Dor/Enxaqueca", "3. Alergia/Rinite", "4. Digestivo", 
-     "5. Muscular", "6. Anticoncepcional", "7. Corticoide", "8. Colírios", "9. Febre (Gotas)"]
+    "Selecione a categoria:",
+    ["Selecione...", "1. Tosse", "2. Dor/Enxaqueca", "3. Alergia/Rinite", 
+     "4. Digestivo", "5. Muscular", "6. Anticoncepcional", 
+     "7. Corticoide", "8. Colírios", "9. Febre"]
 )
 
-# --- ABA INICIAL ---
-if categoria == "Início":
-    st.info("Selecione uma categoria no menu à esquerda para iniciar o protocolo de segurança.")
+# --- TELA INICIAL ---
+if categoria == "Selecione...":
+    st.info("### Bem-vinda, Lourenza!")
+    st.write("Selecione uma categoria no menu à esquerda para iniciar o protocolo de atendimento.")
     st.image("https://cdn-icons-png.flaticon.com/512/3022/3022131.png", width=100)
-    st.write("Este sistema ajuda a garantir que a indicação seja ética e segura, seguindo as RDCs da ANVISA.")
 
-# --- 1. TOSSE ---
-elif categoria == "1. Tosse":
-    st.header("🗣️ Protocolo de Tosse")
-    tipo_tosse = st.radio("Qual o tipo de tosse?", ["Seca", "Com catarro (Cheia)"])
-    idade = st.number_input("Idade do paciente:", min_value=0, value=5)
+# --- LÓGICA PARA TOSSE ---
+elif "1. Tosse" in categoria:
+    st.header("🗣️ Protocolo para Tosse")
+    tipo_tosse = st.radio("A tosse é seca ou com catarro?", ["Seca", "Com catarro"])
     
-    if tipo_tosse == "Com catarro (Cheia)":
-        st.error("🚫 NÃO INDICAR Dropropizina ou Levodropropizina (Antitussígenos).")
-        st.success("✅ INDICAR: Expectorantes ou Mucolíticos (Ambroxol, Acetilcisteína, Acebrofilina).")
-    else:
-        if idade < 2:
-            st.error("⚠️ Menores de 2 anos: NÃO indicar. Encaminhar ao pediatra.")
+    if tipo_tosse == "Seca":
+        st.success("""**INDICAÇÃO:** Sugerir Hidratação e Antitussígenos: Dropropizina, Clobutinol, Levodropropizina e o Dextrometorfano.""")
+        st.warning("""**OBSERVAÇÃO:** Não indicar para tosse com catarro, menores de 2 anos, Asmáticos e Pacientes com DPOC, Insuficiência Renal ou Hepática Grave e Gravidez ou amamentação (sem receita médica).""")
+        st.info("""**AVISO:** Pode causar sonolência (avise quem dirige) e hipotensão (queda de pressão) em pessoas sensíveis.""")
+        
+    elif tipo_tosse == "Com catarro":
+        st.write("### **Opções de Ativos:**")
+        st.write("- **Mucolíticos:** Acetilcisteína, Ambroxol, Bromexina, Carbocisteína")
+        st.write("- **Expectorantes:** Guaifenesina")
+        st.write("- **Fitoterápicos:** Hedera Helix, Guaco")
+        st.write("- **Com Broncodilatador:** Acebrofilina")
+
+        diabetes = st.radio("O paciente tem diabetes?", ["Não", "Sim"])
+        if diabetes == "Sim":
+            st.warning("⚠️ **INDICAR:** Acetilcisteína (sachê sem açúcar) ou versões DIET de Ambroxol/Acebrofilina.")
+
+        st.markdown("---")
+        st.write("**Verificando indicação de Acebrofilina...**")
+        cardiaco = st.radio("O paciente tem problemas de coração ou pressão muito alta?", ["Não", "Sim"])
+        epilepsia = st.radio("O paciente tem histórico de convulsões?", ["Não", "Sim"])
+        idade = st.number_input("Qual a idade do paciente?", min_value=0, value=10)
+
+        if cardiaco == "Sim" or epilepsia == "Sim" or idade < 2:
+            st.error("❌ **EVITAR ACEBROFILINA.** Risco de taquicardia ou crises.")
+            st.write("✅ **PREFERIR:** Acetilcisteína ou Ambroxol (são mais seguros para o coração).")
         else:
-            st.success("✅ Pode indicar Dropropizina (Vibral/Notuss).")
+            st.success("✅ **ACEBROFILINA LIBERADA.** (Excelente para peito chiando).")
 
-# --- 7. CORTICOIDE ---
-elif categoria == "7. Corticoide":
-    st.header("🚫 Protocolo de Corticoides (Hormônios)")
-    st.warning("Lembrete: Corticoides orais NÃO são MIPs.")
-    tem_receita = st.radio("O paciente possui receita médica válida?", ["Não", "Sim"])
+# --- LÓGICA PARA DOR / ENXAQUECA ---
+elif "2. Dor/Enxaqueca" in categoria:
+    st.header("🧠 Protocolo de Avaliação de Cefaleia")
     
-    if tem_receita == "Não":
-        st.error("❌ CONDUTA: NÃO INDICAR. O uso indevido pode mascarar infecções graves.")
-        st.info("💡 Sugestão: Se for inflamação leve, oferecer um AINE (Ibuprofeno/Nimesulida) ou tópico.")
+    unilateral = st.radio("A dor é de um lado só e latejante?", ["Não", "Sim"])
+    sintomas_extras = st.radio("Tem náusea, vômito ou incômodo com a luz?", ["Não", "Sim"])
+    frequencia = st.radio("Isso acontece com frequência (crônico)?", ["Não", "Sim"])
+    hipertensao = st.radio("O paciente tem pressão alta ou problema no coração?", ["Não", "Sim"])
+    estomago = st.radio("Tem histórico de gastrite ou úlcera?", ["Não", "Sim"])
+
+    st.subheader("--- Resultado da Análise ---")
+    if unilateral == "Sim" or sintomas_extras == "Sim":
+        st.warning("**SUSPEITA:** Crise de Enxaqueca (Migrânea).")
+        if hipertensao == "Sim":
+            st.error("⚠️ **ALERTA:** Evitar Triptanos (Naratriptana) e Ergotamina.")
+            st.write("👉 **INDICAR:** Dipirona 1g ou Paracetamol 750mg.")
+            st.info("💡 **DICA:** Se houver náusea, associar Metoclopramida (Plasil).")
+        else:
+            st.success("👉 **INDICAR:** Naratriptana (Naramig) ou Cefaliv/Cefalium.")
+            st.write("💡 **ORIENTAÇÃO:** Tomar o mais rápido possível no início da dor.")
     else:
-        st.success("✅ DISPENSAÇÃO AUTORIZADA. Orientar uso após refeições para proteger o estômago.")
+        st.write("**SUSPEITA:** Cefaleia Tensional ou Dor Comum.")
+        if estomago == "Sim":
+            st.write("👉 **INDICAR:** Paracetamol (mais seguro para o estômago). Evitar Ibuprofeno/Aspirina.")
+        else:
+            st.write("👉 **INDICAR:** Dipirona ou associações com Cafeína (Neosaldina, Dorflex).")
 
-# --- 8. COLÍRIOS ---
-elif categoria == "8. Colírios":
-    st.header("👁️ Atendimento Ocular")
-    sintomas = st.multiselect("Sintomas relatados:", ["Olho Seco", "Vermelhidão leve", "Secreção/Pus", "Dor intensa"])
+    if frequencia == "Sim":
+        st.error("📢 **NOTA:** Uso de analgésicos >3x na semana causa efeito rebote. Encaminhar para profilaxia.")
+
+# --- LÓGICA PARA ALERGIA / RINITE ---
+elif "3. Alergia/Rinite" in categoria:
+    st.header("🤧 Protocolo de Avaliação de Alergia/Rinite")
     
-    if "Secreção/Pus" in sintomas or "Dor intensa" in sintomas:
-        st.error("❌ RISCO DE INFECÇÃO/GLAUCOMA. Não indicar. Encaminhar ao Oftalmologista.")
-    elif "Olho Seco" in sintomas:
-        st.success("✅ INDICAÇÃO: Lubrificantes (Lágrimas Artificiais).")
-    elif "Vermelhidão leve" in sintomas:
-        st.warning("⚠️ Pode indicar Vasoconstritor (Nafazolina), mas orientar uso por no máximo 3 dias.")
+    tipo_sintoma = st.selectbox("Sintomas:", ["1. Espirro/Coriza/Coceira", "2. Nariz Entupido apenas"])
+    tempo = st.selectbox("Frequência:", ["1. Crise aguda (agora)", "2. Persistente (todo dia)"])
+    atividade = st.radio("Vai dirigir, estudar ou operar máquinas hoje?", ["Não", "Sim"])
+    idoso = st.radio("O paciente é idoso?", ["Não", "Sim"])
+    hipertenso = st.radio("O paciente tem pressão alta?", ["Não", "Sim"])
 
-# --- 9. FEBRE / GOTAS ---
-elif categoria == "9. Febre (Gotas)":
-    st.header("⚖️ Cálculo Preciso de Dosagem")
-    med = st.selectbox("Medicamento:", ["Dipirona 500mg/mL", "Ibuprofeno 50mg/mL", "Ibuprofeno 100mg/mL"])
-    peso = st.number_input("Peso do paciente (kg):", min_value=1.0, value=10.0)
-    
-    if med == "Dipirona 500mg/mL":
-        gotas = round(peso * 0.6)
-        limite = 40
-    elif med == "Ibuprofeno 50mg/mL":
-        gotas = round(peso * 2) # Regra padrão 2 gotas/kg
-        limite = 40
-    else: # 100mg/mL
-        gotas = round(peso * 1)
-        limite = 20
+    st.subheader("--- Resultado da Análise ---")
+    if "1." in tipo_sintoma:
+        if atividade == "Sim" or idoso == "Sim":
+            st.success("👉 **INDICAR:** Antialérgicos de 2ª Geração (Não dão sono).")
+            st.write("✅ **Opções:** Loratadina, Desloratadina ou Fexofenadina (Allegra).")
+        else:
+            st.warning("👉 **INDICAR:** Antialérgicos de 1ª Geração (Ação rápida, mas dá SONO).")
+            st.write("✅ **Opções:** Dexclorfeniramina (Polaramine, é REFERÊNCIA), Histamin (é SIMILAR) ou Hidroxizina.")
 
-    if gotas > limite:
-        st.warning(f"⚠️ Cálculo excedeu o teto. Indicar apenas {limite} gotas.")
-    else:
-        st.success(f"✅ Dose Recomendada: **{gotas} gotas**.")
+    if "2." in tipo_sintoma:
+        if hipertenso == "Sim":
+            st.error("⚠️ **ALERTA:** Evitar descongestionantes com Naftazolina (Neosoro/Sorine).")
+            st.write("👉 **INDICAR:** Apenas Soro Fisiológico 0,9% em abundância.")
+        else:
+            st.success("👉 **INDICAR:** Descongestionantes tópicos por no MÁXIMO 3 a 5 dias.")
 
-# --- OUTRAS CATEGORIAS (Espaço para você completar) ---
-else:
-    st.header(f"🔧 Módulo {categoria}")
-    st.write("Este módulo está sendo atualizado com seus protocolos originais.")
-    st.info("Você pode editar o código no GitHub para adicionar os textos específicos aqui.")
+    if "2" in tempo:
+        st.info("💡 **DICA DE TRATAMENTO:** O paciente precisa de Corticoide Nasal (Budesonida/Mometasona).")
+        st.write("📢 **NOTA:** O efeito demora de 2 a 3 dias. Higienizar com soro antes de usar.")
+
+    if idoso == "Sim" and atividade == "Não":
+        st.error("❗ **AVISO:** Mesmo que não dirija, antialérgicos que dão sono aumentam risco de QUEDAS em idosos.")
+
+# --- LÓGICA PARA SAÚDE DIGESTIVA ---
+elif "4. Digestivo" in categoria:
+    st.header("🤢 Protocolo de Avaliação Digestiva")
+    queixa = st.selectbox("Qual o principal sintoma?", ["1. Azia / Queimação / Má digestão", "2. Diarreia", "3. Intestino Preso (Constipação)"])
+
+    if "1." in queixa:
+        gravida = st.radio("A paciente está grávida?", ["Não", "Sim"])
+        uso_frequente = st.radio("Usa remédio para azia quase todo dia?", ["Não", "Sim"])
+        if gravida == "Sim":
+            st.success("👉 **INDICAR:** Carbonato de Cálcio ou Magnésio (Mylanta/Pepsamar). Mais seguro.")
+        else:
+            st.write("👉 **ALÍVIO RÁPIDO:** Hidróxido de Alumínio ou Sais de Fruta.")
+            st.write("👉 **TRATAMENTO:** Omeprazol ou Pantoprazol (Tomar em jejum).")
+        if uso_frequente == "Sim":
+            st.error("⚠️ **ALERTA:** Uso crônico pode esconder úlceras ou H. Pylori. Indicar médico.")
+
+    elif "2." in queixa:
+        febre = st.radio("Tem febre ou sangue/pus nas fezes?", ["Não", "Sim"])
+        crianca = st.radio("É para criança pequena?", ["Não", "Sim"])
+        if febre == "Sim":
+            st.error("❌ **ALERTA CRÍTICO:** NÃO usar Imosec (Loperamida). Risco de infecção generalizada.")
+            st.write("👉 **ORIENTAÇÃO:** Encaminhar ao Pronto Socorro imediatamente.")
+        else:
+            st.success("👉 **INDICAR:** Floratil (Saccharomyces boulardii) ou Enterogermina.")
+            st.write("👉 **ESSENCIAL:** S
