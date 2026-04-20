@@ -19,7 +19,7 @@ categoria = st.sidebar.selectbox(
 
 # --- TELA INICIAL ---
 if categoria == "Selecione...":
-    st.info("### Bem-vinda, Lourenza!")
+    st.info("### Bem-vindo!")
     st.write("Selecione uma categoria no menu à esquerda para iniciar o protocolo de atendimento.")
     st.image("https://cdn-icons-png.flaticon.com/512/3022/3022131.png", width=100)
 
