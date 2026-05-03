@@ -250,7 +250,9 @@ def aba_patologias():
         * **NAC:** Reduz estresse oxidativo.
         * **Melatonina:** Regula o sono e modula a dor.
         """)
+
 elif escolha == "Lipedema":
+       st.markdown("""
         st.subheader("Suplementos para Lipedema")
         st.write("- **Ômega 3:** Redução da inflamação e saúde vascular.")
         st.write("- **Cúrcuma:** Controle do lipedema e antioxidante.")
