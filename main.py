@@ -243,21 +243,22 @@ def aba_patologias():
     
     escolha = st.selectbox("Selecione a condição:", categorias)
 
-    if escolha == "Fibromialgia":
+     if escolha == "Fibromialgia":
         st.markdown("""
         * **Magnésio dimalato:** Relaxamento muscular e energia.
         * **Ômega 3:** Modulação inflamatória e dor.
         * **NAC:** Reduz estresse oxidativo.
         * **Melatonina:** Regula o sono e modula a dor.
-        """)
+        """) # <--- Garanta que o parêntese feche aqui
 
-elif escolha == "Lipedema":
+    elif escolha == "Lipedema":
         st.subheader("Suplementos para Lipedema")
         st.write("- **Ômega 3:** Redução da inflamação e saúde vascular.")
         st.write("- **Cúrcuma:** Controle do lipedema e antioxidante.")
         st.write("- **Resveratrol:** Melhora circulação e reduz dor.")
         st.write("- **Vitamina D:** Imunidade e regulação do cálcio.")
         st.write("- **Melatonina e Calman:** Melhora do sono.")
+
     
     elif escolha == "SOP":
         st.markdown("""
