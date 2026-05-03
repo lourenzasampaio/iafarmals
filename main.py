@@ -252,14 +252,12 @@ def aba_patologias():
         """)
 
 elif escolha == "Lipedema":
-       st.markdown("""
         st.subheader("Suplementos para Lipedema")
         st.write("- **Ômega 3:** Redução da inflamação e saúde vascular.")
         st.write("- **Cúrcuma:** Controle do lipedema e antioxidante.")
         st.write("- **Resveratrol:** Melhora circulação e reduz dor.")
         st.write("- **Vitamina D:** Imunidade e regulação do cálcio.")
-        st.write("- **Melatonina e Calman:** Melhora do sono."
-        """)
+        st.write("- **Melatonina e Calman:** Melhora do sono.")
     
     elif escolha == "SOP":
         st.markdown("""
