@@ -250,24 +250,53 @@ def aba_patologias():
         * **NAC:** Reduz estresse oxidativo.
         * **Melatonina:** Regula o sono e modula a dor.
         """)
+elif escolha == "Lipedema":
+        st.subheader("Suplementos para Lipedema")
+        st.write("- **Ômega 3:** Redução da inflamação e saúde vascular.")
+        st.write("- **Cúrcuma:** Controle do lipedema e antioxidante.")
+        st.write("- **Resveratrol:** Melhora circulação e reduz dor.")
+        st.write("- **Vitamina D:** Imunidade e regulação do cálcio.")
+        st.write("- **Melatonina e Calman:** Melhora do sono.")
+    
     elif escolha == "SOP":
         st.markdown("""
         * **Inositol:** Sensibilidade à insulina.
         * **Zinco:** Acne e ovulação.
-        * **Berberina:** Regula o açúcar no sangue.
-        """)
+        * **Berberina:** Regula o açúcar no sangue.)
+        
+    elif escolha == "Gravidez":
+        st.subheader("Planejamento e Gestação")
+        st.write("- **Metilfolato:** Prevenção de defeitos no tubo neural.")
+        st.write("- **Ferro:** Essencial para a ovulação.")
+        st.write("- **Coenzima Q10:** Qualidade dos óvulos.")
+            
     elif escolha == "Hipotireoidismo":
         st.info("A conversão T4 -> T3 depende de: Selênio, Zinco, Ferro, Vitamina D e Iodo.")
+
     elif escolha == "Uso de GLP-1":
         st.write("- **Cabelos:** Ferro e Zinco.")
         st.write("- **Massa Muscular:** Creatina e Proteína.")
         st.write("- **Energia:** Glucerna.")
+
     elif escolha == "Pomadas":
         st.markdown("""
-        * **Acne:** Tretinoína | **Candidíase:** Nistatina
-        * **Bacteriana:** Mupirocina | **Herpes:** Aciclovir
-        * **Psoríase:** Clobetasol | **Dor:** Diclofenaco
+        st.write("**Dor:** Diclofenaco")
+            st.write("**Acne:** Tretinoína (Noite)")
+            st.write("**Cortes:** Bacitracina + Neomicina")
+            st.write("**Psoríase:** Clobetasol")
+            st.write("**Herpes:** Aciclovir")
+            st.write("**Candidíase:** Nistatina")
+            st.write("**Picadas:** Hidrocortisona / Magic Balm")
+            st.write("**Bacteriana:** Mupirocina (2x dia)")
+            st.write("**Assadura:** Óxido de Zinco")
+            st.write("**Micoses:** Clotrimazol")        
         """)
+        elif escolha == "Dermatite Atópica":
+        st.subheader("Cuidados com a Pele")
+        st.write("**Higiene:** Baby Dove, Johnsons Baby.")
+        st.write("**Hidratação:** Vasenol (sem fragrância), Neutrogena Loção Intensiva.")
+        st.write("**Crise:** Bepantriz (corpo e rosto), Vaselina sólida.")
+
     elif escolha == "Desparasitação":
         st.write("**Anitta:** Peso x 0,375ml (12/12h por 3 dias).")
         st.write("**Albendazol:** 400mg dose única (repetir em 15 dias para alguns casos).")
