@@ -256,7 +256,8 @@ elif escolha == "Lipedema":
         st.write("- **Cúrcuma:** Controle do lipedema e antioxidante.")
         st.write("- **Resveratrol:** Melhora circulação e reduz dor.")
         st.write("- **Vitamina D:** Imunidade e regulação do cálcio.")
-        st.write("- **Melatonina e Calman:** Melhora do sono.")
+        st.write("- **Melatonina e Calman:** Melhora do sono."
+        """)
     
     elif escolha == "SOP":
         st.markdown("""
