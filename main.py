@@ -283,17 +283,17 @@ def aba_patologias():
         st.write("- **Energia:** Glucerna.")
 
     elif escolha == "Pomadas":
-        st.subheader("Guia Rápido de Pomadas")
-        st.write("**Dor:** Diclofenaco")
-            st.write("**Acne:** Tretinoína (Noite)")
-            st.write("**Cortes:** Bacitracina + Neomicina")
-            st.write("**Psoríase:** Clobetasol")
-            st.write("**Herpes:** Aciclovir")
-            st.write("**Candidíase:** Nistatina")
-            st.write("**Picadas:** Hidrocortisona / Magic Balm")
-            st.write("**Bacteriana:** Mupirocina (2x dia)")
-            st.write("**Assadura:** Óxido de Zinco")
-            st.write("**Micoses:** Clotrimazol")        
+    st.subheader("Guia Rápido de Pomadas")
+    st.write("**Dor:** Diclofenaco")
+    st.write("**Acne:** Tretinoína)
+    st.write("**Cortes:** Bacitracina + Neomicina")
+    st.write("**Psoríase:** Clobetasol")
+    st.write("**Herpes:** Aciclovir")
+    st.write("**Candidíase:** Nistatina")
+    st.write("**Picadas:** Hidrocortisona / Magic Balm")
+    st.write("**Bacteriana:** Mupirocina (2x dia)")
+    st.write("**Assadura:** Óxido de Zinco")
+    st.write("**Micoses:** Clotrimazol")        
         
         elif escolha == "Dermatite Atópica":
         st.subheader("Cuidados com a Pele")
