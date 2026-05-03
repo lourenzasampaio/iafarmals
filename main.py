@@ -264,7 +264,9 @@ def aba_patologias():
         st.markdown("""
         * **Inositol:** Sensibilidade à insulina.
         * **Zinco:** Acne e ovulação.
-        * **Berberina:** Regula o açúcar no sangue.)
+        * **Berberina:** Regula o açúcar no sangue.
+        """)  
+        
         
     elif escolha == "Gravidez":
         st.subheader("Planejamento e Gestação")
