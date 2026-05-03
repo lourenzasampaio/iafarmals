@@ -293,6 +293,7 @@ def aba_patologias():
             st.write("**Assadura:** Óxido de Zinco")
             st.write("**Micoses:** Clotrimazol")        
         """)
+        
         elif escolha == "Dermatite Atópica":
         st.subheader("Cuidados com a Pele")
         st.write("**Higiene:** Baby Dove, Johnsons Baby.")
