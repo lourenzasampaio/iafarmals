@@ -243,7 +243,7 @@ def aba_patologias():
     
     escolha = st.selectbox("Selecione a condição:", categorias)
 
-     if escolha == "Fibromialgia":
+    if escolha == "Fibromialgia":
         st.markdown("""
         * **Magnésio dimalato:** Relaxamento muscular e energia.
         * **Ômega 3:** Modulação inflamatória e dor.
