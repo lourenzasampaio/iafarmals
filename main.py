@@ -64,7 +64,8 @@ def aba_patologias():
     categorias = [
         "Fibromialgia", "Lipedema", "Hipotireoidismo", "SOP", 
         "Gravidez", "Uso de GLP-1", "Dermatite Atópica", "Pomadas", 
-        "Desparasitação", "Interações Médicas"
+        "Desparasitação", "Interações Médicas", "Resfriado e Gripe",
+        "Corrimentos", "Vômito e Náusea", "Antialérgicos", "Melasma", "Diclofenaco"
     ]
     
     escolha = st.selectbox("Selecione a patologia ou condição:", categorias)
@@ -163,6 +164,120 @@ def aba_patologias():
         st.subheader("Alertas Importantes")
         st.warning("**Omeprazol X Clopidogrel:** Não devem ser usados juntos.")
         st.success("**Dica:** Em pacientes polimedicados, preferir o **Pantoprazol** para evitar interações.")
+
+    elif escolha == "Resfriado e Gripe":
+        st.subheader("🤧 Protocolo para Resfriado e Gripe")
+        
+        st.markdown("### 🌿 Kaloba Infantil")
+        st.write("**Dosagem:**")
+        st.write("- 1 a 5 anos: 10 gotas de 8/8h")
+        st.write("- 6 a 12 anos: 20 gotas de 8/8h")
+        st.write("- > 12 anos: 30 gotas de 8/8h")
+        st.info("💡 **Indicação:** Início do resfriado | Duração: 5 a 7 dias")
+        
+        st.markdown("---")
+        st.markdown("### 🌿 Imunoflan")
+        st.write("**Dosagem:**")
+        st.write("- 1 a 2 anos: 2,5ml ao dia")
+        st.write("- 3 a 5 anos: 2,5ml de 12/12h")
+        st.write("- 6 a 11 anos: 5ml de 12/12h")
+        st.write("- Acima de 12 anos: 7,5ml de 12/12h")
+        st.info("💡 **Indicação:** Início do resfriado | Duração: 7 a 10 dias")
+        
+        st.markdown("---")
+        st.markdown("### 🔄 Gripe todo mês")
+        st.success("**Recomendação:** Zinco + Vitamina D")
+        
+        st.markdown("---")
+        st.markdown("### 💧 Tosse com catarro")
+        st.write("**Própolis aquoso ou infantil + Mel (acima de 1 ano)**")
+        st.write("- 2 gotas de própolis + 1 colher de mel")
+        st.write("- Pode usar 0,5 gota por kg")
+        
+        st.markdown("---")
+        st.markdown("### 👃 Nariz entupido")
+        st.write("**Lavagem nasal** com soro fisiológico")
+        
+        st.markdown("---")
+        st.markdown("### 🫀 Garganta inflamada")
+        st.write("**Própolis** - ação anti-inflamatória e antimicrobiana")
+
+    elif escolha == "Corrimentos":
+        st.subheader("🩺 Protocolo para Corrimentos")
+        
+        st.markdown("### 🍄 Fluconazol")
+        st.write("**Indicação:** Trata fungos como Candidíase")
+        st.write("**Sintomas:** Coceira intensa, corrimento branco e ardência")
+        st.write("**Pomadas para Candidíase:** Clotrimazol e Miconazol")
+        
+        st.markdown("---")
+        st.markdown("### 🦠 Secnidazol")
+        st.write("**Indicação:** Trata bactérias e protozoários")
+        st.write("**Sintomas:** Corrimento amarelado ou acinzentado, mau cheiro e menos coceira")
+
+    elif escolha == "Vômito e Náusea":
+        st.subheader("🤢 Protocolo para Vômito e Náusea")
+        
+        st.markdown("### 💊 Ondansetrona (Ondiff)")
+        st.write("**Dosagem:**")
+        st.write("- **2 a 11 anos:** Ondiff 4mg - biofilme - 1 filme por dia")
+        st.write("- **> 11 anos:** 4mg - 1 a 2 filmes (máximo 2 ao dia)")
+        st.write("- **Adultos:** biofilme de 8mg (máximo 2 ao dia)")
+
+    elif escolha == "Antialérgicos":
+        st.subheader("🤧 Guia de Antialérgicos")
+        
+        st.markdown("### 📊 Escolha do Antialérgico")
+        st.write("**1ª opção:** Allegra, Alektos")
+        st.write("**2ª opção:** Loratadina e Desloratadina")
+        
+        st.markdown("---")
+        st.markdown("### 👶 Pediátrico")
+        st.write("**Melhor:** Zyxam e Ebastel")
+        st.write("**Bom:** Alektos e Allegra")
+        
+        st.markdown("---")
+        st.markdown("### 📋 Comparativo")
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.info("**Desloratadina**")
+            st.write("- Quem não pode sentir sono")
+            st.write("- Crianças pequenas")
+            st.write("- 1x ao dia")
+        
+        with col2:
+            st.info("**Loratadina**")
+            st.write("- Alergias comuns")
+            st.write("- Pessoas resistentes ao sono")
+            st.write("- 1x ao dia")
+        
+        st.warning("**Dexclorfeniramina (causa SONO)**")
+        st.write("- Crise aguda e pontual")
+        st.write("- Picadas de inseto")
+        st.write("- 3 a 4 vezes ao dia")
+
+    elif escolha == "Melasma":
+        st.subheader("🎨 Protocolo para Melasma")
+        st.success("**Associação recomendada:** Vitamina A + Vitamina C")
+        st.info("💡 A vitamina A ajuda na renovação celular e a vitamina C clareia a pele")
+
+    elif escolha == "Diclofenaco":
+        st.subheader("💊 Diclofenaco - Qual escolher?")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.info("**Diclofenaco Sódico**")
+            st.write("⏱️ Início lento: 2 a 3 horas")
+            st.write("📈 Efeito duradouro")
+            st.write("✅ Ideal para fazer efeito durante o dia")
+        
+        with col2:
+            st.success("**Diclofenaco Potássico**")
+            st.write("⚡ Início rápido: 20 a 30 minutos")
+            st.write("📉 Efeito curto")
+            st.write("✅ Ideal para alívio rápido")
 
 # --- MENU LATERAL PRINCIPAL ---
 st.sidebar.title("Navegação")
@@ -345,98 +460,4 @@ if menu_principal == "Protocolos de Atendimento":
         elif "3" in tipo_dor:
             st.warning("⚠️ **ALERTA:** Se houver perda de força nas pernas, ir ao médico.")
             if idoso == "Sim":
-                st.write("👉 **INDICAR:** Paracetamol + Vitaminas do complexo B (Etna/Citoneurin).")
-            else:
-                st.success("👉 **INDICAR:** Associações potentes (Tandrilax / Torsilax / Bioflex).")
-    
-    # ANTICONCEPCIONAL
-    elif "6. Anticoncepcional" in categoria:
-        st.header("💊 Protocolo de Anticoncepcionais")
-        primeira_vez = st.radio("A cliente quer começar a tomar pela primeira vez?", ["Não", "Sim"])
-        if primeira_vez == "Sim":
-            st.error("❌ **ATENÇÃO:** Farmacêutico não deve indicar o primeiro anticoncepcional.")
-            st.write("👉 **ORIENTAÇÃO:** Encaminhar ao Ginecologista para exames de risco de Trombose.")
-        else:
-            st.write("✅ **OK:** Verificar se ela já tem o nome do remédio ou se deseja o Genérico/Intercambiável.")
-            esquecimento = st.radio("É dúvida sobre esquecimento?", ["Não", "Sim"])
-            if esquecimento == "Sim":
-                horas = st.number_input("Quanto tempo de atraso (em horas)?", min_value=0)
-                if horas <= 12:
-                    st.success("**ORIENTAÇÃO:** Tomar agora. Eficácia mantida. Continuar cartela normalmente.")
-                else:
-                    st.error("**ALERTA:** Eficácia reduzida! Tomar o esquecido e usar CAMISINHA por 7 dias.")
-            
-            interacao = st.radio("Está tomando antibiótico ou remédio para convulsão?", ["Não", "Sim"])
-            if interacao == "Sim":
-                st.error("**ALERTA CRÍTICO:** Esses remédios podem cortar o efeito. Usar método de barreira (camisinha).")
-            
-            fuma = st.radio("Paciente fuma e tem mais de 35 anos?", ["Não", "Sim"])
-            if fuma == "Sim":
-                st.warning("**AVISO MÉDICO:** Risco aumentado de Trombose. Sugerir consulta para avaliar métodos sem estrogênio.")
-    
-    # CORTICOIDE
-    elif "7. Corticoide" in categoria:
-        st.header("🚫 Protocolo de Ética e Segurança - Corticoides")
-        possui_receita = st.radio("O paciente possui receita médica?", ["Não", "Sim"])
-        if possui_receita == "Não":
-            st.error("❌ **ATENÇÃO:** Corticoides não são MIPs.")
-            st.write("👉 **CONDUTA:** Não indicar. Encaminhar ao médico para diagnóstico.")
-        else:
-            st.success("✅ **OK:** Proceder com a DISPENSAÇÃO...")
-            diabetes = st.radio("O paciente é diabético?", ["Não", "Sim"])
-            pressao = st.radio("Tem pressão alta?", ["Não", "Sim"])
-            tempo = st.number_input("Uso por quantos dias?", min_value=1, value=1)
-            if diabetes == "Sim": st.error("ALERTA: Monitorar glicemia!")
-            if pressao == "Sim": st.error("ALERTA: Pode subir a pressão arterial.")
-            st.info("**REGRAS DE OURO:** Tomar pela MANHÃ e com ESTÔMAGO CHEIO.")
-            if tempo > 10: st.warning("- AVISO: Não parar o uso de vez. O desmame deve ser gradual.")
-    
-    # COLÍRIOS
-    elif "8. Colírios" in categoria:
-        st.header("👁️ Avaliação Ética Ocular")
-        vermelho = st.radio("O olho está muito vermelho ou com dor?", ["Não", "Sim"])
-        secrecao = st.radio("Tem secreção amarelada (pus)?", ["Não", "Sim"])
-        if secrecao == "Sim":
-            st.error("❌ **NÃO INDICAR:** Suspeita de Infecção Bacteriana. Encaminhar ao Oftalmo.")
-        elif vermelho == "Sim":
-            st.warning("⚠️ **CUIDADO:** Se houver dor forte ou visão turva, não indique nada. Compressas geladas e médico.")
-        else:
-            st.success("✅ **AUTONOMIA:** Você pode indicar Lubrificantes (Lágrimas Artificiais).")
-    
-    # FEBRE
-    elif "9. Febre" in categoria:
-        st.header("🌡️ Protocolo de Avaliação de Febre")
-        idade = st.number_input("Qual a idade do paciente? (Ex: 0.5 para 6 meses)", min_value=0.0, value=20.0, step=0.1)
-        temperatura = st.number_input("Qual a temperatura medida? (Ex: 38.5)", min_value=30.0, value=37.0, step=0.1)
-        peso = st.number_input("Qual o peso do paciente?", min_value=1.0, value=60.0)
-        
-        manchas = st.radio("- Tem manchas vermelhas ou dor atrás dos olhos?", ["Não", "Sim"])
-        vmito = st.radio("- Tem vômito persistente ou dor abdominal forte?", ["Não", "Sim"])
-        pescoco = st.radio("- Tem rigidez na nuca?", ["Não", "Sim"])
-        
-        if pescoco == "Sim":
-            st.error("❌ **ALERTA CRÍTICO:** Suspeita de Meningite. Ir ao Pronto Socorro AGORA!")
-        elif manchas == "Sim" or vmito == "Sim":
-            st.error("⚠️ **ALERTA:** Suspeita de Dengue/Zika/Chikungunya. Hidratação intensa. NÃO usar Ibuprofeno/Aspirina.")
-        elif idade < 0.25:
-            st.error("❌ **ALERTA:** Bebês menores de 3 meses com febre devem ir ao Pediatra imediatamente.")
-        else:
-            if temperatura < 37.8:
-                st.info("👉 **ESTADO:** Febrícula. Banho morno e hidratação.")
-            else:
-                st.success(f"👉 **INDICAR:** Dipirona ou Paracetamol.")
-                st.write(f"### **DOSAGEM ESTIMADA PARA DIPIRONA ({peso}kg):**")
-                st.write(f"- **Dipirona GOTAS (500mg/mL):** {int(peso)} gotas.")
-                st.write(f"- **Dipirona XAROPE (50mg/mL):** {peso * 0.5} mL.")
-
-elif menu_principal == "Guia de Suplementos":
-    aba_suplementos()
-
-elif menu_principal == "Patologias":
-    aba_patologias()
-
-# RODAPÉ
-st.markdown("---")
-st.caption("© 2026 - Desenvolvido com dedicação por Lourenza Sampaio.")
-st.sidebar.markdown("---")
-st.sidebar.write("Sistema seguro para uso em balcão.")
+                st.write("👉 **INDIC
