@@ -1,4 +1,5 @@
 import streamlit as st
+from datetime import datetime
 
 # Configuração da Página
 st.set_page_config(page_title="Assistente de Atendimento Farmacêutico", page_icon="💊", layout="wide")
@@ -18,6 +19,16 @@ suplementos_db = [
     {"nome": "B12", "info": "Energia, sistema nervoso, foco e memória.", "tags": "energia, cerebro, foco", "obs": ""},
     {"nome": "Ferro", "info": "Combate anemia e fadiga. Essencial para engravidar.", "tags": "anemia, energia, gravidez", "obs": ""}
 ]
+
+# --- FUNÇÃO PARA SAUDAÇÃO PERSONALIZADA ---
+def saudacao():
+    hora = datetime.now().hour
+    if hora < 12:
+        return "🌅 Bom dia, Lourenza!"
+    elif hora < 18:
+        return "☀️ Boa tarde, Lourenza!"
+    else:
+        return "🌙 Boa noite, Lourenza!"
 
 # --- FUNÇÕES DAS ABAS ---
 def aba_suplementos():
@@ -286,6 +297,10 @@ menu_principal = st.sidebar.radio("Escolha o módulo:", ["Protocolos de Atendime
 if menu_principal == "Protocolos de Atendimento":
     st.title("💊 Assistente de Atendimento Farmacêutico")
     
+    # SAUDAÇÃO PERSONALIZADA (opção 1 - após o título)
+    st.markdown(f"### {saudacao()} 👋")
+    st.markdown("---")
+    
     # Menu de Categorias
     st.sidebar.header("Menu de Navegação")
     categoria = st.sidebar.selectbox(
@@ -460,7 +475,7 @@ if menu_principal == "Protocolos de Atendimento":
         elif "3" in tipo_dor:
             st.warning("⚠️ **ALERTA:** Se houver perda de força nas pernas, ir ao médico.")
             if idoso == "Sim":
-                st.write("👉 **INDICICAR:** Paracetamol + Vitaminas do complexo B (Etna/Citoneurin).")
+                st.write("👉 **INDICAR:** Paracetamol + Vitaminas do complexo B (Etna/Citoneurin).")
             else:
                 st.success("👉 **INDICAR:** Associações potentes (Tandrilax / Torsilax / Bioflex).")
     
