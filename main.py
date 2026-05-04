@@ -189,14 +189,59 @@ def aba_patologias():
         st.markdown("""
         * **Magnésio dimalato:** Relaxamento muscular.
         * **Ômega 3:** Modulação inflamatória.
+        """)    
+    elif escolha == "Lipedema":
+        st.subheader("Suplementos para Lipedema")
+        st.markdown("""
+        * **Ômega 3:** Redução da inflamação e saúde vascular.
+        * **Cúrcuma:** Controle do lipedema e antioxidante.
+        * **Resveratrol:** Melhora circulação e reduz dor.
+        * **Vitamina D:** Imunidade e regulação do cálcio.
+        * **Melatonina:** Suporte para o sono.
+        """)
+    elif escolha == "Hipotireoidismo":
+        st.subheader("Conversão T4 -> T3")
+        st.info("A conversão depende de: Selênio, Zinco, Ferro, Vitamina D e Iodo.")
+
+    elif pat == "SOP":
+        st.markdown("""
+        - **Inositol:** Ciclos de insulina.
+        - **Zinco:** Acne e ovulação.
+        - **Hortelã:** Reduz hormônios masculinos.
+        - **Berberina:** Regula açúcar no sangue.
+        - **NAC:** Qualidade do óvulo.
         """)
 
+    elif pat == "Gravidez":
+        st.markdown("""
+        - **Metilfolato:** Prevenção de defeitos neurais (iniciar 4 meses antes).
+        - **Ferro:** Essencial para ovulação.
+        - **Coenzima Q10:** Qualidade dos óvulos.
+        - **Vitamina D e Ômega 3:** Melhora capacidade reprodutiva.
+        """) 
+
+    elif pat == "Uso de GLP-1":
+        st.subheader("Suporte Ozempic/Wegovy/Mounjaro")
+        st.markdown("""
+        - **Cabelos:** Ferro e Zinco.
+        - **Massa Muscular:** Creatina e Proteína (Whey).
+        - **Energia e Saciedade:** Glucerna (carboidrato lento).
+        """)
+        
+        
     elif escolha == "Pomadas":
         st.subheader("Guia Rápido de Pomadas")
-        st.write("**Dor:** Diclofenaco")
-        st.write("**Acne:** Tretinoína") # Corrigido: Fechei as aspas aqui
-        st.write("**Cortes:** Bacitracina + Neomicina")
-        st.write("**Psoríase:** Clobetasol")
+        st.write("- **Dor:** Diclofenaco")
+        st.write("- **Acne:** Tretinoína (Noite)")
+        st.write("- **Cortes:** Bacitracina + Neomicina")
+        st.write("- **Psoríase:** Clobetasol")
+        st.write("- **Herpes:** Aciclovir")
+        st.write("- **Candidíase:** Nistatina")
+        st.write("- **Picadas:** Hidrocortisona / Magic Balm")
+        st.write("- **Bacteriana:** Mupirocina (2x dia)")
+        st.write("- **Assadura:** Óxido de Zinco")
+        st.write("- **Micoses:** Clotrimazol")
+        
 
     elif escolha == "Dermatite Atópica": # Corrigido: Ajustei a identação (espaços à esquerda)
         st.subheader("Cuidados com a Pele")
