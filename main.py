@@ -190,6 +190,7 @@ def aba_patologias():
         * **Magnésio dimalato:** Relaxamento muscular.
         * **Ômega 3:** Modulação inflamatória.
         """)    
+        
     elif escolha == "Lipedema":
         st.subheader("Suplementos para Lipedema")
         st.markdown("""
@@ -203,7 +204,7 @@ def aba_patologias():
         st.subheader("Conversão T4 -> T3")
         st.info("A conversão depende de: Selênio, Zinco, Ferro, Vitamina D e Iodo.")
 
-    elif pat == "SOP":
+    elif escolha == "SOP":
         st.markdown("""
         - **Inositol:** Ciclos de insulina.
         - **Zinco:** Acne e ovulação.
@@ -212,7 +213,7 @@ def aba_patologias():
         - **NAC:** Qualidade do óvulo.
         """)
 
-    elif pat == "Gravidez":
+    elif escolha == "Gravidez":
         st.markdown("""
         - **Metilfolato:** Prevenção de defeitos neurais (iniciar 4 meses antes).
         - **Ferro:** Essencial para ovulação.
@@ -220,7 +221,7 @@ def aba_patologias():
         - **Vitamina D e Ômega 3:** Melhora capacidade reprodutiva.
         """) 
 
-    elif pat == "Uso de GLP-1":
+    elif escolha == "Uso de GLP-1":
         st.subheader("Suporte Ozempic/Wegovy/Mounjaro")
         st.markdown("""
         - **Cabelos:** Ferro e Zinco.
