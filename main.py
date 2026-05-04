@@ -460,4 +460,98 @@ if menu_principal == "Protocolos de Atendimento":
         elif "3" in tipo_dor:
             st.warning("⚠️ **ALERTA:** Se houver perda de força nas pernas, ir ao médico.")
             if idoso == "Sim":
-                st.write("👉 **INDIC
+                st.write("👉 **INDICICAR:** Paracetamol + Vitaminas do complexo B (Etna/Citoneurin).")
+            else:
+                st.success("👉 **INDICAR:** Associações potentes (Tandrilax / Torsilax / Bioflex).")
+    
+    # ANTICONCEPCIONAL
+    elif "6. Anticoncepcional" in categoria:
+        st.header("💊 Protocolo de Anticoncepcionais")
+        primeira_vez = st.radio("A cliente quer começar a tomar pela primeira vez?", ["Não", "Sim"])
+        if primeira_vez == "Sim":
+            st.error("❌ **ATENÇÃO:** Farmacêutico não deve indicar o primeiro anticoncepcional.")
+            st.write("👉 **ORIENTAÇÃO:** Encaminhar ao Ginecologista para exames de risco de Trombose.")
+        else:
+            st.write("✅ **OK:** Verificar se ela já tem o nome do remédio ou se deseja o Genérico/Intercambiável.")
+            esquecimento = st.radio("É dúvida sobre esquecimento?", ["Não", "Sim"])
+            if esquecimento == "Sim":
+                horas = st.number_input("Quanto tempo de atraso (em horas)?", min_value=0)
+                if horas <= 12:
+                    st.success("**ORIENTAÇÃO:** Tomar agora. Eficácia mantida. Continuar cartela normalmente.")
+                else:
+                    st.error("**ALERTA:** Eficácia reduzida! Tomar o esquecido e usar CAMISINHA por 7 dias.")
+            
+            interacao = st.radio("Está tomando antibiótico ou remédio para convulsão?", ["Não", "Sim"])
+            if interacao == "Sim":
+                st.error("**ALERTA CRÍTICO:** Esses remédios podem cortar o efeito. Usar método de barreira (camisinha).")
+            
+            fuma = st.radio("Paciente fuma e tem mais de 35 anos?", ["Não", "Sim"])
+            if fuma == "Sim":
+                st.warning("**AVISO MÉDICO:** Risco aumentado de Trombose. Sugerir consulta para avaliar métodos sem estrogênio.")
+    
+    # CORTICOIDE
+    elif "7. Corticoide" in categoria:
+        st.header("🚫 Protocolo de Ética e Segurança - Corticoides")
+        possui_receita = st.radio("O paciente possui receita médica?", ["Não", "Sim"])
+        if possui_receita == "Não":
+            st.error("❌ **ATENÇÃO:** Corticoides não são MIPs.")
+            st.write("👉 **CONDUTA:** Não indicar. Encaminhar ao médico para diagnóstico.")
+        else:
+            st.success("✅ **OK:** Proceder com a DISPENSAÇÃO...")
+            diabetes = st.radio("O paciente é diabético?", ["Não", "Sim"])
+            pressao = st.radio("Tem pressão alta?", ["Não", "Sim"])
+            tempo = st.number_input("Uso por quantos dias?", min_value=1, value=1)
+            if diabetes == "Sim": st.error("ALERTA: Monitorar glicemia!")
+            if pressao == "Sim": st.error("ALERTA: Pode subir a pressão arterial.")
+            st.info("**REGRAS DE OURO:** Tomar pela MANHÃ e com ESTÔMAGO CHEIO.")
+            if tempo > 10: st.warning("- AVISO: Não parar o uso de vez. O desmame deve ser gradual.")
+    
+    # COLÍRIOS
+    elif "8. Colírios" in categoria:
+        st.header("👁️ Avaliação Ética Ocular")
+        vermelho = st.radio("O olho está muito vermelho ou com dor?", ["Não", "Sim"])
+        secrecao = st.radio("Tem secreção amarelada (pus)?", ["Não", "Sim"])
+        if secrecao == "Sim":
+            st.error("❌ **NÃO INDICAR:** Suspeita de Infecção Bacteriana. Encaminhar ao Oftalmo.")
+        elif vermelho == "Sim":
+            st.warning("⚠️ **CUIDADO:** Se houver dor forte ou visão turva, não indique nada. Compressas geladas e médico.")
+        else:
+            st.success("✅ **AUTONOMIA:** Você pode indicar Lubrificantes (Lágrimas Artificiais).")
+    
+    # FEBRE
+    elif "9. Febre" in categoria:
+        st.header("🌡️ Protocolo de Avaliação de Febre")
+        idade = st.number_input("Qual a idade do paciente? (Ex: 0.5 para 6 meses)", min_value=0.0, value=20.0, step=0.1)
+        temperatura = st.number_input("Qual a temperatura medida? (Ex: 38.5)", min_value=30.0, value=37.0, step=0.1)
+        peso = st.number_input("Qual o peso do paciente?", min_value=1.0, value=60.0)
+        
+        manchas = st.radio("- Tem manchas vermelhas ou dor atrás dos olhos?", ["Não", "Sim"])
+        vmito = st.radio("- Tem vômito persistente ou dor abdominal forte?", ["Não", "Sim"])
+        pescoco = st.radio("- Tem rigidez na nuca?", ["Não", "Sim"])
+        
+        if pescoco == "Sim":
+            st.error("❌ **ALERTA CRÍTICO:** Suspeita de Meningite. Ir ao Pronto Socorro AGORA!")
+        elif manchas == "Sim" or vmito == "Sim":
+            st.error("⚠️ **ALERTA:** Suspeita de Dengue/Zika/Chikungunya. Hidratação intensa. NÃO usar Ibuprofeno/Aspirina.")
+        elif idade < 0.25:
+            st.error("❌ **ALERTA:** Bebês menores de 3 meses com febre devem ir ao Pediatra imediatamente.")
+        else:
+            if temperatura < 37.8:
+                st.info("👉 **ESTADO:** Febrícula. Banho morno e hidratação.")
+            else:
+                st.success(f"👉 **INDICAR:** Dipirona ou Paracetamol.")
+                st.write(f"### **DOSAGEM ESTIMADA PARA DIPIRONA ({peso}kg):**")
+                st.write(f"- **Dipirona GOTAS (500mg/mL):** {int(peso)} gotas.")
+                st.write(f"- **Dipirona XAROPE (50mg/mL):** {peso * 0.5} mL.")
+
+elif menu_principal == "Guia de Suplementos":
+    aba_suplementos()
+
+elif menu_principal == "Patologias":
+    aba_patologias()
+
+# RODAPÉ
+st.markdown("---")
+st.caption("© 2026 - Desenvolvido com dedicação por Lourenza Sampaio.")
+st.sidebar.markdown("---")
+st.sidebar.write("Sistema seguro para uso em balcão.")
